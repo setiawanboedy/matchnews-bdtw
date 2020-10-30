@@ -1,0 +1,23 @@
+{
+    "name": "MatchNews",
+    "short_name": "MatchNews",
+    "description": "Aplikasi Informasi Pertandingan Bola",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#536dfe",
+    "theme_color": "#536dfe",
+    "icons": [
+        {
+            "src": "icon512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icon192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    
+  "gcm_sender_id": "1093472055283"
+}

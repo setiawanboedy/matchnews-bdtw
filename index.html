@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/icon192x192.png">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#536dfe" />
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Match News</title>
+</head>
+<body>
+
+    <!-- navar start -->
+    <nav class="indigo accent-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo news" >Match News</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="mobile-nav"></ul>
+        </div>
+    </nav>
+    <!-- navbar end -->
+    <div class="container" id="content"></div>
+    <div class="center-align" id="loader"></div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <script src="/js/materialize.min.js"></script>
+    
+    <script src="/js/nav.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/matchnewsUI.js"></script>
+    <script src="/js/db/db_op.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/db/idb.js"></script>
+    <script src="/js/db/db.js"></script>
+    
+</body>
+</html>

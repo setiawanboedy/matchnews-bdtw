@@ -1,0 +1,37 @@
+
+.filter-item:hover {
+    cursor: pointer;
+}
+
+.filter-item.active {
+    color: #2196f3;
+    font-weight: 700;
+    border-bottom: 4px solid #2196f3;
+}
+
+.category-item .card-news:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+}
+
+@media screen and (max-width: 670px){
+    a.news{
+        font-size: 8vw;
+    }
+    header{
+      min-height: 500px;
+    }
+    h5{
+        font-size: 8vw;
+
+    }
+
+    .info .horizontal{
+        display: inline-block;
+        position: relative;
+    }
+    .info .responsive-img img{
+        width: 72vw;
+    }
+
+}
