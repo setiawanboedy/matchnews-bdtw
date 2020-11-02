@@ -1,13 +1,76 @@
-// showStanding data
-function showStandings(data){
-    let content = '';
-    let no = 1;
+// showScoreResult
+function showScoreResult(data) {
+  let content = `
+          
+            <div class="row">
+                <div class="col s12 center-align">
+                    <div class="center-align size" >
+                        <img src="${data.match.competition.area.ensignUrl.replace(
+                          /^http:\/\//i,
+                          "https://"
+                        )}" alt="Match Area">
+                    </div>
+                </div>
+                <div class="col s6 center-align"><h4>${
+                  data.match.homeTeam.name
+                }</h4></div>
+                <div class="col s6 center-align"><h4>${
+                  data.match.awayTeam.name
+                }</h4></div>
+                <div class="col s6 center-align"><h2>${
+                  data.match.score.fullTime.homeTeam
+                }</h2></div>
+                <div class="col s6 center-align"><h2>${
+                  data.match.score.fullTime.awayTeam
+                }</h2></div>
+            </div>
+        <div class="score">
+            <div class=" row">
+                <div class=" col s12 center-align"><h4>Match Fact</h4></div>
+                <div>
+                    <div class=" col s4 l4 center-align"><h5>${
+                      data.head2head.homeTeam.wins
+                    }</h5></div>
+                    <div class=" col s4 l4 center-align"><h5>Wins</h5></div>
+                    <div class=" col s4 center-align"><h5>${
+                      data.head2head.awayTeam.wins
+                    }</h5></div>
+                    <div class=" col s4 l4 center-align"><h5>${
+                      data.head2head.homeTeam.draws
+                    }</h5></div>
+                    <div class=" col s4 l4 center-align"><h5>Draws</h5></div>
+                    <div class=" col s4 center-align"><h5>${
+                      data.head2head.awayTeam.draws
+                    }</h5></div>
+                    <div class=" col s4 l4 center-align"><h5>${
+                      data.head2head.homeTeam.losses
+                    }</h5></div>
+                    <div class=" col s4 l4 center-align"><h5>Losses</h5></div>
+                    <div class=" col s4 center-align"><h5>${
+                      data.head2head.awayTeam.losses
+                    }</h5></div>
+                </div>
+                
+            </div>
+        </div>
+        </div>
 
-    data.standings[0].table.forEach(standing => {
-        content += `
+    `;
+  document.getElementById("scoreResult").innerHTML = content;
+}
+// showStanding data
+function showStandings(data) {
+  let content = "";
+  let no = 1;
+
+  data.standings[0].table.forEach((standing) => {
+    content += `
             <tr>
             <td>${no}</td>
-            <td><img src="${standing.team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="${standing.team.name}"/></td>
+            <td><img src="${standing.team.crestUrl.replace(
+              /^http:\/\//i,
+              "https://"
+            )}" width="30px" alt="${standing.team.name}"/></td>
             <td>${standing.won}</td>
             <td>${standing.draw}</td>
             <td>${standing.lost}</td>
@@ -18,14 +81,14 @@ function showStandings(data){
             </tr>
         `;
 
-        no++;
-    });
-    document.getElementById('standing').innerHTML = `
+    no++;
+  });
+  document.getElementById("standing").innerHTML = `
     <h6>Math Day : ${data.season.currentMatchday}</h6>
     <table class="striped centered bordered" style="margin-top: 20px;">
        <thead>
           <tr>
-             <th>#</th>
+             <th>No</th>
              <th>Team</th>
              <th>W</th>
              <th>D</th>
@@ -43,15 +106,21 @@ function showStandings(data){
  `;
 }
 
+// show data team
 function showDataTeam(data) {
-    let content = '';
+  let content = "";
 
-    data.teams.forEach(team => {
-        content += `
+  data.teams.forEach((team) => {
+    content += `
             <div class="col s12 info">
+            <a href="./detailteam.html?id=${team.id}">
                 <div class="card horizontal" >
+                
                 <div class="responsive-img" style="margin:10px;">
-                    <img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" alt="${team.name}"/>
+                    <img src="${team.crestUrl.replace(
+                      /^http:\/\//i,
+                      "https://"
+                    )}" alt="${team.name}"/>
                 </div>
                 <div class="card-stacked">
                     <div class="card-title">
@@ -69,28 +138,94 @@ function showDataTeam(data) {
                 </div>
             </div>
         `;
-    });
+  });
 
-    document.getElementById('team').innerHTML = content; 
+  document.getElementById("team").innerHTML = content;
+}
 
+// show artikel get by id
+function showTeamById(data) {
+  let contentItem = ``;
+  let no = 1;
+  data.squad.forEach((item) => {
+    contentItem += `
+        <tr>
+            <td>${no}</td>
+            <td>${item.name}</td>
+            <td>${item.position ? item.position : "-"}</td>
+            <td>${moment.utc(item.dateOfBirth).format("DD/MM/YYYY")}</td>
+            <td>${item.nationality}</td>
+            <td>${item.role}</td>
+            
+        </tr>
+        `;
+    no++;
+  });
+
+  document.getElementById("content").innerHTML = `
+    <div class="col s12 info">
+        <div class="card" >
+        
+        <div class="responsive-img center-align" style="margin-top:10px;">
+            <img style="margin-top:30px;" src="${data.crestUrl.replace(
+              /^http:\/\//i,
+              "https://"
+            )}" alt="${data.name}"/>
+        </div>
+        <div class="card-stacked">
+            <div class="card-title">
+                <h4 class="center">${data.name}</h6>
+            </div>
+            <div class="card-content">
+                <h6 class="center-align">Short Info:</h6>
+                <p class="center-align">Shor Name: ${data.shortName}</p>
+                <p class="center-align">Address: ${data.address}</p>
+                <p class="center-align">Phone: ${data.phone}</p>
+                <p class="center-align">Founded: ${data.founded}</p>
+                <p class="center-align">Venue: ${data.venue}</p>
+            </div>
+            <div><h4 class="center-align">Squad Team</h4></div>
+            <table class="responsive-table striped centered" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Date Birth</th>
+                <th>Nationality</th>
+                <th>Role</th>
+                </tr>
+            </thead>
+            <tbody >
+                ${contentItem}
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+    `;
 }
 
 function showDataMatches(data) {
-    let content = '';
-    let no = 1;
+  let content = "";
+  let no = 1;
 
-    data.matches.forEach((matches) => {
-        content += `
+  data.matches.forEach((matches) => {
+    content += `
             <tr>
             <td>${no}</td>
             <td>${matches.homeTeam.name}</td>
             <td>VS</td>
             <td>${matches.awayTeam.name}</td>
             <td>${matches.status}</td>
-            <td>${moment.utc(matches.utcDate).format("DD/MM/YYYY, h:mm:ss a")}</td>
+            <td>${moment
+              .utc(matches.utcDate)
+              .format("DD/MM/YYYY, h:mm:ss a")}</td>
             <td>
             
-                <a class="waves-effect waves-light btn-small blue" onClick="savedMatchesById(${matches.id})">
+                <a class="waves-effect waves-light btn-small blue" onClick="savedMatchesById(${
+                  matches.id
+                })">
                     <i class="small material-icons">save</i>
                 </a>
             
@@ -98,15 +233,15 @@ function showDataMatches(data) {
             </tr>
         `;
 
-        no++;
-});
+    no++;
+  });
 
-document.getElementById('matches').innerHTML = `
+  document.getElementById("matches").innerHTML = `
     <h6>Math Day : ${data.matches[0].season.currentMatchday}</h6>
-    <table class="responsive-table centered" style="margin-top: 20px;">
+    <table class="responsive-table striped centered" style="margin-top: 20px;">
         <thead>
             <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Home Team</th>
             <th></th>
             <th>Away Team</th>
@@ -122,38 +257,39 @@ document.getElementById('matches').innerHTML = `
 `;
 }
 
-
 // save match item sechedule
-function savedMatches(){
-    getAllData().then(data => {
-        // if(data.length == 0) return document.getElementById("saved").innerHTML = '';
-        let content = '';
-        let no = 1;
-        data.forEach(matches => {
-            content += `
+function savedMatches() {
+  getAllData().then((data) => {
+    // if(data.length == 0) return document.getElementById("saved").innerHTML = '';
+    let content = "";
+    let no = 1;
+    data.forEach((matches) => {
+      content += `
             <tr>
             <td>${no}</td>
             <td>${matches.homeTeam.name}</td>
             <td>VS</td>
             <td>${matches.awayTeam.name}</td>
             <td>${matches.status}</td>
-            <td>${moment.utc(matches.utcDate).format("DD/MM/YYYY, h:mm:ss a")}</td>
+            <td>${moment
+              .utc(matches.utcDate)
+              .format("DD/MM/YYYY, h:mm:ss a")}</td>
             <td>
-            
-               <a class="waves-effect waves-light btn-small red" onClick="deleteMatchesById(${matches.id})">
+               <a class="waves-effect waves-light btn-small red" onClick="deleteMatchesById(${
+                 matches.id
+               })">
                   <i class="small material-icons">delete</i>
                </a>
-            
             </td>
           </tr>
             `;
-            no++;
-        })
-        document.getElementById("saved").innerHTML = `
+      no++;
+    });
+    document.getElementById("saved").innerHTML = `
        <table class="responsive-table centered" style="margin-top: 20px;">
           <thead>
              <tr>
-                <th>#</th>
+                <th>No</th>
                 <th>Home Team</th>
                 <th></th>
                 <th>Away Team</th>
@@ -166,15 +302,15 @@ function savedMatches(){
              ${content}
           </tbody>
        </table>
-        `
-    })
+        `;
+  });
 }
 
 // Loader
-function showLoader(){
-    let loader = `
+function showLoader() {
+  let loader = `
     <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
+        <div class="spinner-layer spinner-blue">
         <div class="circle-clipper left">
             <div class="circle"></div>
         </div><div class="gap-patch">
@@ -185,9 +321,9 @@ function showLoader(){
         </div>
     </div>
     `;
-    document.getElementById('loader').innerHTML = loader;
+  document.getElementById("loader").innerHTML = loader;
 }
 
-function hideLoader(){
-    document.getElementById('loader').innerHTML = '';
+function hideLoader() {
+  document.getElementById("loader").innerHTML = "";
 }

@@ -1,31 +1,33 @@
 let webPush = require('web-push');
-     
-const vapidKeys = webPush.generateVAPIDKeys();
- 
+
+const vapidKeys = {
+   "publicKey": "BPzVLmC78AArtg8hCBCIUwASL1RPrX2Iw9CdNgeMbzO9O5C3eO28jp0joAaPOKXqQ5ez6Q9Z95N5r6MxynoAPxU",
+   "privateKey": "8pIb84tBCp5Nfvr7Qq8pobktp6n6GUDaBZveKZ0c-pI"
+};
 webPush.setVapidDetails(
    'mailto:example@yourdomain.org',
    vapidKeys.publicKey,
    vapidKeys.privateKey
 )
 const pushSubscription = {
-   "endpoint": "https://fcm.googleapis.com/fcm/send/d5x_laEuZp4:APA91bFXQWThNBVc-a6WsEKlZ9AldtylORb70egblvmtBCoZaNWJ8AWSp21bs-q9qVvj5SwemMW4bJ2wxT58VzZ-oLVz6o3G9zb2OHXl6hThTcrjwMyJqTEbhySR0ugwewuLFemoB2KG",
+   "endpoint": "https://fcm.googleapis.com/fcm/send/cTFZvuR9iMA:APA91bEM-abjaRN8UkkR4cv6Q-1eQOFSAyDS1iyLg52f8HJDmkgvNJUSn3jD6AcMK1pM57Y2vJucJs2_KNp0pANnSHFdAnF817kPzpnj6JKRGpG0qUTHxzZEi3Mvqj0HxotFiFfgVaDx",
    "keys": {
-       "p256dh": "BFzRY+U6yaIg1MPja0CmXj7DHWikGLJf3SmKFvh6xOV98VOpNAlH53iQkYr7t4M5ALMMkH4kInaj5OvGVbzwtg8=",
-       "auth": "LPlXSI8XOT1keMkesJ8f1g=="
+      "p256dh": "BFij+a/vMCUM7Q1+zi4juoK4NPg6rNMU+5wiHtw15FoOOsxioht7vBj1CjQ4+gHGOtz1ISw+nm44GwFMC3NLsvk=",
+      "auth": "OXQDegTWSVV71ri1PMNHag=="
    }
 };
-const payload = 'Selamat! Aplikasi Anda sudah dapat menerima push notifikasi!';
- 
+const payload = 'Pantau jadwal pertandingan\n sepak bola dunia terUpdate!';
+
 const options = {
    gcmAPIKey: '1093472055283',
    TTL: 60
 };
 try {
    webPush.sendNotification(
-     pushSubscription,
-     payload,
-     options
+      pushSubscription,
+      payload,
+      options
    );
- } catch (err) {
+} catch (err) {
    console.error(err);
- }
+}

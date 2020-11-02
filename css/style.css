@@ -1,12 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+a, h4, h5, .news {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-size: 2vw;
+}
+
+h4.size {
+    font-size: 2vw;
+}
+
+h5.size {
+    font-size: 3vw;
+}
+
+.size img {
+    max-width: 24vw;
+}
+
+.sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
 
 .filter-item:hover {
     cursor: pointer;
 }
 
 .filter-item.active {
-    color: #2196f3;
+    color: #00838f;
     font-weight: 700;
-    border-bottom: 4px solid #2196f3;
+    border-bottom: 4px solid #00838f;
 }
 
 .category-item .card-news:hover {
@@ -14,24 +57,43 @@
     transform: translateY(-4px);
 }
 
-@media screen and (max-width: 670px){
-    a.news{
+.top-margin {
+    margin-top: 3vw;
+}
+
+@media screen and (max-width: 670px) {
+    a.news {
         font-size: 8vw;
     }
-    header{
-      min-height: 500px;
+    header {
+        min-height: 500px;
     }
-    h5{
+    h4 {
+        font-size: 7vw;
+    }
+    h5.size {
         font-size: 8vw;
-
     }
-
-    .info .horizontal{
+    .info .horizontal {
         display: inline-block;
         position: relative;
     }
-    .info .responsive-img img{
+    .info .responsive-img img {
         width: 72vw;
     }
+    h2 {
+        font-size: 20px;
+    }
+    h4.size {
+        font-size: 20px;
+    }
+    .size img {
+        max-width: 48vw;
+    }
+}
 
+@media screen and (max-width: 360px) {
+    a.news {
+        font-size: 8vw;
+    }
 }
