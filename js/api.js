@@ -3,7 +3,7 @@ const BASE_URL = "https://api.football-data.org/v2/";
 const END_POINT = `${BASE_URL}competitions/2021/`;
 
 // cek status
-function status(response) {
+const status = (response) => {
   if (response.status !== 200) {
     console.log(`status error: ${response.status}`);
     return Promise.reject(new Error(response.statusText));
@@ -13,17 +13,17 @@ function status(response) {
 }
 
 // get response json
-function jsonRes(response) {
+const jsonRes = (response) => {
   return response.json();
 }
 
 // catch error
-function err(err) {
+const err = (err) => {
   console.log(err);
 }
 
 // headers
-let headers = {
+const headers = {
   method: "GET",
   headers: {
     "X-Auth-Token": API_KEY,
@@ -31,37 +31,23 @@ let headers = {
 };
 
 // Match Score Result
-function getMatchResult() {
+const getMatchResult = () => {
   cachesScoreResultById();
   fetch(`${END_POINT}matches?status=FINISHED`, headers)
     .then(status)
     .then(jsonRes)
     .then((data) => {
       let i = data.matches.length - 1;
-      let id = data.matches[i].id;
-      console.log(id);
-      getMatchResultById(id);
-      // console.log(data);
-    })
-    .catch(err);
-}
+      let last = data.matches[i];
+      console.log(last);
+      showScoreResult(last);
 
-function getMatchResultById(id) {
-  showLoader();
-  cachesScoreResult(id);
-  fetch(`${BASE_URL}matches/${id}`, headers)
-    .then(status)
-    .then(jsonRes)
-    .then((data) => {
-      showScoreResult(data);
-      hideLoader();
-      console.log(data);
     })
     .catch(err);
 }
 
 // multi parsing
-function getDataStandings() {
+const getDataStandings = () => {
   showLoader();
   const categoryElements = document.querySelectorAll(".filter-item");
 
@@ -117,7 +103,7 @@ function getDataStandings() {
   getStandings();
 }
 
-function getDataTeam() {
+const getDataTeam = () => {
   showLoader();
   cachesDataTeam();
   fetch(`${END_POINT}teams`, headers)
@@ -131,7 +117,7 @@ function getDataTeam() {
 }
 
 // Kita get artikel by id
-function getTeamById() {
+const getTeamById = () => {
   showLoader();
   // Ambil nilai query parameter (?id=)
   let urlParams = new URLSearchParams(window.location.search);
@@ -152,7 +138,7 @@ function getTeamById() {
 }
 
 // get data from matches
-function getDataMatches() {
+const getDataMatches = () => {
   showLoader();
   cachesDataMatches();
   fetch(`${END_POINT}matches?status=SCHEDULED`, headers)
@@ -166,7 +152,7 @@ function getDataMatches() {
 }
 
 // function for get match
-function getMatchesById(id) {
+const getMatchesById = (id) => {
   return new Promise((resolve, reject) => {
     cachesMatchesById(id);
     fetch(`${BASE_URL}matches/${id}`, headers)

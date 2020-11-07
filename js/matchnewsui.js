@@ -1,35 +1,44 @@
 // showScoreResult
-function showScoreResult(data) {
-  let content = `
-          
-            <div class="row">
-                <div class="col s12 center-align">
-                    <div class="center-align size" >
-                        <img src="${data.match.competition.area.ensignUrl.replace(
-                          /^http:\/\//i,
-                          "https://"
-                        )}" alt="Match Area">
+const showScoreResult = (data) => {
+  
+      let homeImage = data.homeTeam.id;
+      let awayImage = data.awayTeam.id;
+      let scoreHomeTeam = data.score.fullTime.homeTeam;
+      let scoreAwayTeam = data.score.fullTime.awayTeam;
+      let date = new Date(data.utcDate);
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      console.log("img",homeImage);
+  let content =
+                `<div class="col s12 l6">
+                <div class="card horizontal" >
+                  <div class="card-stacked">
+                    <div class="card-content">
+                        <div class="match-title left">
+                            <img class="home-match" src="https://crests.football-data.org/${homeImage}.svg">
+                            <span class="name-team-match center">${data.homeTeam.name}</span>
+                        </div>
+                        <div class="detail-match left">
+                            <p class="center">${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}</p>
+                            <h1 class="center">${scoreHomeTeam} : ${scoreAwayTeam}</h1>
+                        </div>
+                        <div class="match-title right">
+                          <img class="home-match" src="https://crests.football-data.org/${awayImage}.svg">
+                            <span class="name-team-match center">${data.awayTeam.name}</span>
+                        </div>
                     </div>
+                  </div>
                 </div>
-                <div class="col s6 center-align"><h4>${
-                  data.match.homeTeam.name
-                }</h4></div>
-                <div class="col s6 center-align"><h4>${
-                  data.match.awayTeam.name
-                }</h4></div>
-                <div class="col s6 center-align"><h2>${
-                  data.match.score.fullTime.homeTeam
-                }</h2></div>
-                <div class="col s6 center-align"><h2>${
-                  data.match.score.fullTime.awayTeam
-                }</h2></div>
-            </div>
-
-    `;
+              </div>`
+            ;
   document.getElementById("scoreResult").innerHTML = content;
 }
+
+
 // showStanding data
-function showStandings(data) {
+const showStandings = (data) => {
   let content = "";
   let no = 1;
 
@@ -76,21 +85,21 @@ function showStandings(data) {
 }
 
 // show data team
-function showDataTeam(data) {
+const showDataTeam = (data) => {
   let content = "";
 
   data.teams.forEach((team) => {
     content += `
             <div class="col s12 info">
             <a href="./detailteam.html?id=${team.id}">
-                <div class="card horizontal hoverable">
+                <div class="card horizontal radius hoverable">
                 <div class="responsive-img" style="margin:10px;">
                     <img src="${team.crestUrl.replace(
                       /^http:\/\//i,
                       "https://"
                     )}" alt="${team.name}"/>
                 </div>
-                <div class="card-stacked cyan darken-3 white-text hide-on-small-only">
+                <div class="card-stacked cyan darken-3 white-text radius-right hide-on-small-only">
                     <div class="card-title">
                         <h4 class="center">${team.name}</h6>
                     </div>
@@ -103,7 +112,7 @@ function showDataTeam(data) {
                         <p class="center-align">Venue: ${team.venue}</p>
                     </div>
                 </div>
-                <div class="card-stacked cyan darken-3 white-text hide-on-large-only">
+                <div class="card-stacked cyan darken-3 white-text radius-bottom hide-on-large-only">
                     <div class="card-title">
                         <h4 class="center">${team.name}</h6>
                     </div>
@@ -118,7 +127,7 @@ function showDataTeam(data) {
 }
 
 // show artikel get by id
-function showTeamById(data) {
+const showTeamById = (data) => {
   let contentItem = ``;
   let no = 1;
   data.squad.forEach((item) => {
@@ -138,7 +147,7 @@ function showTeamById(data) {
 
   document.getElementById("content").innerHTML = `
     <div class="col s12 info">
-        <div class="card">
+        <div class="card radius">
         <div class="responsive-img center-align" style="margin-top:10px;">
             <img style="margin-top:30px;" src="${data.crestUrl.replace(
               /^http:\/\//i,
@@ -159,7 +168,7 @@ function showTeamById(data) {
             </div>
             </div>
             </div>
-            <div class="card">
+            <div class="card radius">
             <div><h4 class="center-align" style="padding: 5px;">Squad Team</h4></div>
             <div class="divider"></div>
             <table class="responsive-table striped centered" style="margin-top: 20px;">
@@ -182,7 +191,7 @@ function showTeamById(data) {
     `;
 }
 
-function showDataMatches(data) {
+const showDataMatches = (data) => {
   let content = "";
   let no = 1;
 
@@ -232,9 +241,8 @@ function showDataMatches(data) {
 }
 
 // save match item sechedule
-function savedMatches() {
+const savedMatches = () => {
   getAllData().then((data) => {
-    // if(data.length == 0) return document.getElementById("saved").innerHTML = '';
     let content = "";
     let no = 1;
     data.forEach((matches) => {
@@ -281,7 +289,7 @@ function savedMatches() {
 }
 
 // Loader
-function showLoader() {
+const showLoader = () => {
   let loader = `
     <div class="preloader-wrapper big active">
         <div class="spinner-layer spinner-blue">
@@ -298,6 +306,6 @@ function showLoader() {
   document.getElementById("loader").innerHTML = loader;
 }
 
-function hideLoader() {
+const hideLoader = () => {
   document.getElementById("loader").innerHTML = "";
 }

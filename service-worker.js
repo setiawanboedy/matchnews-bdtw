@@ -30,7 +30,6 @@ workbox.precaching.precacheAndRoute(
       {url: 'js/matchnewsui.js', revision: '1'},
       {url: 'js/moment.js', revision: '1'},
       {url: 'js/script.js', revision: '1'},
-      {url: 'https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js', revision: '1' },
       {url: 'https://fonts.googleapis.com/icon?family=Material+Icons', revision: '1' },
    ], {
       ignoreUrlParametersMatching : [/.*/] 

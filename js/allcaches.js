@@ -5,19 +5,8 @@ function cachesScoreResultById() {
       if (response) {
         response.json().then((data) => {
           let i = data.matches.length - 1;
-          let id = data.matches[i].id;
-          cachesScoreResult(id);
-        });
-      }
-    });
-  }
-}
-function cachesScoreResult(id) {
-  if ("caches" in window) {
-    caches.match(`${BASE_URL}matches/${id}`).then((response) => {
-      if (response) {
-        response.json().then((data) => {
-          showScoreResult(data);
+          let last = data.matches[i];
+          showScoreResult(last);
         });
       }
     });

@@ -12,11 +12,11 @@ webPush.setVapidDetails(
 );
 const pushSubscription = {
    endpoint:
-      "https://fcm.googleapis.com/fcm/send/dQOtJU74CWk:APA91bEVV5t4ate8UNpfimBnkkkD6_XitjTECPfFerOrtw9abBIqe4df12HJikhdhOvvKQfEU_oOW3q2U75D0OrJUQUgJ5IDlgOlDodHIHTnT0fLZ-jtvZpPJYvscd9qnDY_I6T29BQB",
+      "https://fcm.googleapis.com/fcm/send/eYaE3EsNOIE:APA91bFYC5FBrSye9cPqKvpZ4hI2F3JedkB6D9LRswgZVVsgeemWKK8q_gIuhrBwTfdxtwgFkIbeMr9X3ek7R5j6RFiR3G078FAZhFAzfIPEszu55z8xOHPBOqK9EKjYLDfQ0OrbvDV_",
    keys: {
       p256dh:
-         "BFL8D2c/F6b0dP6QCrZP+HRrlZh5LaMZZFevA/j5mn/uZwsYHhBAzpiCBS3iK/d0OOBgezp0xHAnp+5Am5duJko=",
-      auth: "YbQtCDEPobsL4m8fIVFQIQ==",
+         "BKEhNWh9Z2QdhUHRPW09VqXi/bK8tTkw2KWM8DNTMe+20SvUL1fV4B6KlbDVrpU1JhBttZMHCj9NYtVrLnAVlQM=",
+      auth: "EhWQDiOPRDURgOVx72Z9CQ==",
    },
 };
 const payload = "Pantau jadwal pertandingan\n sepak bola dunia terUpdate!";
