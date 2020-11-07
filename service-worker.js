@@ -11,6 +11,8 @@ workbox.precaching.precacheAndRoute(
       {url: 'index.html', revision: '1'},
       {url: 'detailteam.html', revision: '1'},
       {url: 'manifest.json', revision: '1'},
+      {url: 'img/profile.jpg', revision: '1'},
+      {url: 'img/favicon.png', revision: '1'},
       {url: 'icon192x192.png', revision: '1'},
       {url: 'icon512x512.png', revision: '1'},
       {url: 'pages/infoteam.html', revision: '1'},
@@ -30,7 +32,6 @@ workbox.precaching.precacheAndRoute(
       {url: 'js/script.js', revision: '1'},
       {url: 'https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js', revision: '1' },
       {url: 'https://fonts.googleapis.com/icon?family=Material+Icons', revision: '1' },
-      {url: 'https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2', revision: '1' },
    ], {
       ignoreUrlParametersMatching : [/.*/] 
    }
@@ -55,7 +56,7 @@ workbox.routing.registerRoute(
    workbox.strategies.staleWhileRevalidate({
       plugins: [
          new workbox.expiration.Plugin({
-            maxEntries: 60,
+            maxEntries: 100,
             maxAgeSeconds: 30 * 24 * 60 * 60
          }),
      ],
@@ -71,10 +72,18 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
    new RegExp('https://api.football-data.org/v2/'),
-      workbox.strategies.networkFirst({
-         networkTimeoutSeconds: 3,
-         cacheName: 'football-api'
-      })
+   workbox.strategies.staleWhileRevalidate({
+      cacheName: 'Api-cache', 
+      plugins: [
+         new workbox.cacheableResponse.Plugin({
+            statuses: [0, 200],
+         }),
+         new workbox.expiration.Plugin({
+            maxAgeSeconds: 60 * 60 * 24 * 365,
+            maxEntries: 30,
+         }),
+      ]
+   })
 );
 
 self.addEventListener('push', (event) => {
