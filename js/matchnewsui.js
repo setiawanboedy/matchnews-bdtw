@@ -24,36 +24,6 @@ function showScoreResult(data) {
                   data.match.score.fullTime.awayTeam
                 }</h2></div>
             </div>
-        <div class="score">
-            <div class=" row">
-                <div class=" col s12 center-align"><h4>Match Fact</h4></div>
-                <div>
-                    <div class=" col s4 l4 center-align"><h5>${
-                      data.head2head.homeTeam.wins
-                    }</h5></div>
-                    <div class=" col s4 l4 center-align"><h5>Wins</h5></div>
-                    <div class=" col s4 center-align"><h5>${
-                      data.head2head.awayTeam.wins
-                    }</h5></div>
-                    <div class=" col s4 l4 center-align"><h5>${
-                      data.head2head.homeTeam.draws
-                    }</h5></div>
-                    <div class=" col s4 l4 center-align"><h5>Draws</h5></div>
-                    <div class=" col s4 center-align"><h5>${
-                      data.head2head.awayTeam.draws
-                    }</h5></div>
-                    <div class=" col s4 l4 center-align"><h5>${
-                      data.head2head.homeTeam.losses
-                    }</h5></div>
-                    <div class=" col s4 l4 center-align"><h5>Losses</h5></div>
-                    <div class=" col s4 center-align"><h5>${
-                      data.head2head.awayTeam.losses
-                    }</h5></div>
-                </div>
-                
-            </div>
-        </div>
-        </div>
 
     `;
   document.getElementById("scoreResult").innerHTML = content;
@@ -80,13 +50,12 @@ function showStandings(data) {
             <td>${standing.goalDifference}</td>
             </tr>
         `;
-
     no++;
   });
   document.getElementById("standing").innerHTML = `
     <h6>Math Day : ${data.season.currentMatchday}</h6>
-    <table class="striped centered bordered" style="margin-top: 20px;">
-       <thead>
+    <table class="striped centered responsive-table" style="margin-top: 20px;">
+       <thead class="cyan darken-3 white-text">
           <tr>
              <th>No</th>
              <th>Team</th>
@@ -114,15 +83,14 @@ function showDataTeam(data) {
     content += `
             <div class="col s12 info">
             <a href="./detailteam.html?id=${team.id}">
-                <div class="card horizontal" >
-                
+                <div class="card horizontal hoverable">
                 <div class="responsive-img" style="margin:10px;">
                     <img src="${team.crestUrl.replace(
                       /^http:\/\//i,
                       "https://"
                     )}" alt="${team.name}"/>
                 </div>
-                <div class="card-stacked">
+                <div class="card-stacked cyan darken-3 white-text hide-on-small-only">
                     <div class="card-title">
                         <h4 class="center">${team.name}</h6>
                     </div>
@@ -135,6 +103,12 @@ function showDataTeam(data) {
                         <p class="center-align">Venue: ${team.venue}</p>
                     </div>
                 </div>
+                <div class="card-stacked cyan darken-3 white-text hide-on-large-only">
+                    <div class="card-title">
+                        <h4 class="center">${team.name}</h6>
+                    </div>
+                </div>
+                
                 </div>
             </div>
         `;
@@ -164,8 +138,7 @@ function showTeamById(data) {
 
   document.getElementById("content").innerHTML = `
     <div class="col s12 info">
-        <div class="card" >
-        
+        <div class="card">
         <div class="responsive-img center-align" style="margin-top:10px;">
             <img style="margin-top:30px;" src="${data.crestUrl.replace(
               /^http:\/\//i,
@@ -184,9 +157,13 @@ function showTeamById(data) {
                 <p class="center-align">Founded: ${data.founded}</p>
                 <p class="center-align">Venue: ${data.venue}</p>
             </div>
-            <div><h4 class="center-align">Squad Team</h4></div>
+            </div>
+            </div>
+            <div class="card">
+            <div><h4 class="center-align" style="padding: 5px;">Squad Team</h4></div>
+            <div class="divider"></div>
             <table class="responsive-table striped centered" style="margin-top: 20px;">
-            <thead>
+            <thead class="cyan darken-3 white-text">
                 <tr>
                 <th>No</th>
                 <th>Name</th>
@@ -196,11 +173,10 @@ function showTeamById(data) {
                 <th>Role</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody>
                 ${contentItem}
             </tbody>
         </table>
-        </div>
         </div>
     </div>
     `;
@@ -228,18 +204,16 @@ function showDataMatches(data) {
                 })">
                     <i class="small material-icons">save</i>
                 </a>
-            
             </td>
             </tr>
         `;
-
     no++;
   });
 
   document.getElementById("matches").innerHTML = `
     <h6>Math Day : ${data.matches[0].season.currentMatchday}</h6>
     <table class="responsive-table striped centered" style="margin-top: 20px;">
-        <thead>
+        <thead class="cyan darken-3 white-text">
             <tr>
             <th>No</th>
             <th>Home Team</th>
@@ -286,8 +260,8 @@ function savedMatches() {
       no++;
     });
     document.getElementById("saved").innerHTML = `
-       <table class="responsive-table centered" style="margin-top: 20px;">
-          <thead>
+       <table class="responsive-table striped centered" style="margin-top: 20px;">
+          <thead class="cyan darken-3 white-text">
              <tr>
                 <th>No</th>
                 <th>Home Team</th>
@@ -298,7 +272,7 @@ function savedMatches() {
                 <th>Action</th>
              </tr>
           </thead>
-          <tbody >
+          <tbody>
              ${content}
           </tbody>
        </table>

@@ -1,73 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/icon192x192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="description" content="Aplikasi Informasi Pertandingan Bola">
+    <meta name="theme-color" content="#00838f" />
+    <link rel="preconnect" href="https://api.football-data.org">
+    <link rel="stylesheet" href="/css/style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="/css/materialize.min.css">
-  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/icon192x192.png">
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#536dfe" />
-  <link rel="stylesheet" href="/css/style.css">
+    <title>Match News</title>
+  </head>
 
-  <title>Match News</title>
-</head>
+  <body>
 
-<body>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-footer">
-    <div class="modal-content">
-      <h4>Match News</h4>
-      <p>Within the last years football-data changed from a solely personal hobby project into a side business. Did I
-        work alone at the very beginning, there are now ppl with a football affinity like me, helping to check and
-        expand the data every day. Additionally my automatic QA-services get better every day, and that's good because
-        data quality matters.
-      </p>
-      <p>Over all the years working with football data (w/o dash), I realized that even the most popular providers don't
-        have 100% clean data.
-        That's where football-data wants to be different.
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
+    <!-- navar start -->
+    <section class="sticky">
+      <nav class="cyan darken-3" role="navigation">
+        <div class="nav-wrapper container">
+          <a href="/index.html" class="brand-logo news"><img src="/img/favicon.png" width="62px" alt="Match News"></a>
+          <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
 
-  <!-- navar start -->
-  <section class="sticky">
-    <nav class="cyan darken-3 " role="navigation">
-      <div class="nav-wrapper container">
-        <a href="#" class="brand-logo news">Match News</a>
-        <a href="#" data-target="mobile-nav" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
+          <ul id="navbar" class="topnav right hide-on-med-and-down"></ul>
+          <ul class="sidenav" id="mobile-nav"></ul>
+        </div>
+      </nav>
+    </section>
+    <!-- navbar end -->
 
-        <ul id="navbar" class="topnav right hide-on-med-and-down"></ul>
-        <ul class="sidenav" id="mobile-nav"></ul>
+    <!-- start content section -->
+    <main style="z-index: 99">
+      <div class="container" id="content"></div>
+      <div class="center-align" id="loader"></div>
+    </main>
+    <!-- end content section -->
+
+    <!-- Footer -->
+    <footer class="page-footer cyan darken-3">
+      <div class="footer-copyright">
+          <div class="container center">
+              © 2020 Match News
+          </div>
       </div>
-    </nav>
-  </section>
-  <!-- navbar end -->
+  </footer>
 
-  <!-- start content section -->
-  <section style="z-index: 99;">
-    <div class="container" id="content"></div>
-    <div class="center-align" id="loader"></div>
-  </section>
-  <!-- end content section -->
-
-  <script src="/js/materialize.min.js"></script>
-  <script src="/js/api.js"></script>
-  <script src="/js/nav.js"></script>
-  <script src="/js/db/db_op.js"></script>
-  <script src="/js/script.js"></script>
-  <script src="/js/moment.js"></script>
-  <script src="/js/db/idb.js"></script>
-  <script src="/js/db/db.js"></script>
-  <script src="/js/allcaches.js"></script>
-  <script src="/js/matchnewsUI.js"></script>
-</body>
-
+    <script src="/js/materialize.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/db/db_op.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/db/idb.js"></script>
+    <script src="/js/db/db.js"></script>
+    <script src="/js/allcaches.js"></script>
+    <script src="/js/matchnewsui.js"></script>
+  </body>
 </html>

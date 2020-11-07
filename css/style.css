@@ -52,13 +52,11 @@ h5.size {
     border-bottom: 4px solid #00838f;
 }
 
-.category-item .card-news:hover {
-    cursor: pointer;
-    transform: translateY(-4px);
-}
-
 .top-margin {
     margin-top: 3vw;
+}
+#shadow{
+    box-shadow: -10px 30px 60px rgba(2, 71, 51, 0.205);
 }
 
 @media screen and (max-width: 670px) {
@@ -89,6 +87,9 @@ h5.size {
     }
     .size img {
         max-width: 48vw;
+    }
+    .news img{
+        width: 55px;
     }
 }
 
